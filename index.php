@@ -88,19 +88,19 @@ if (x==null || x=="")
 <form action="pizzaResults.php" name="pizzaForm" method="post" onsubmit="return validateForm()">
   
   
-  <label for="firstName"><span>First Name</span></label>
+  <label for="firstName"><span>First Name:*</span></label>
   <input name="firstName" type="text" maxlength="12" /><br  />
   
   
-  <label for="lastName"><span>Last name:</span></label>
+  <label for="lastName"><span>Last name:*</span></label>
   <input type="text" name="lastName" maxlength="15" /><br  />
-  <label for="address"><span> Address:</span></label>
+  <label for="address"><span> Address:*</span></label>
   <input type="text" name="address" maxlength="30" /><br  />
   
-  <label for="city"><span>City:</span></label>
+  <label for="city"><span>City:*</span></label>
   <input type="text" name="city"  maxlength="15"/><br  />
   
-  <label for="State"><span>State:</span></label>
+  <label for="State"><span>State:*</span></label>
   <select name="State" size="1">
     <option value="Alabama">Alabama</option>
     <option value="Alaska">Alaska</option>
@@ -153,9 +153,9 @@ if (x==null || x=="")
     <option value="Wisconsin">Wisconsin</option>
     <option value="Wyoming">Wyoming</option>
   </select><br  />
-  <label for="zip"><span>Zip Code:</span></label>
+  <label for="zip"><span>Zip Code:*</span></label>
   <input type="text" name="zip"/><br />
-  <label for="email"><span>E-Mail:</span></label>
+  <label for="email"><span>E-Mail:*</span></label>
   <input type="text" name="email"/><br />
   
   
@@ -175,7 +175,7 @@ Check</label><br  />
 Credit Card</label><br  />
   
   <div>
-    <h2>Toppings</h2>
+    <h2>Toppings .25 each</h2>
     <p>
       <label for="pepperoni">
      <input type="checkbox" name="Toppings[]" value="pepperoni"  />
@@ -221,62 +221,65 @@ Credit Card</label><br  />
   <p>
     <label for="small">
      <input type="radio" name="pizzaSize" value="small" id="pizzaSize_0" />
-     Small</label>
+     Small $8.00</label>
     <br />
     <label for="medium">
      <input type="radio" name="pizzaSize" value="medium" id="pizzaSize_1" />
-     Medium</label>
+     Medium $10.00</label>
     <br />
     <label for="large">
      <input type="radio" name="pizzaSize" value="large" id="pizzaSize_2" />
-     Large</label>
+     Large $12.00</label>
     <br />
     <label for="jumbo">
      <input type="radio" name="pizzaSize" value="jumbo" id="pizzaSize_3" />
-     Jumbo</label>
+     Jumbo $15.00</label>
     <br />
     </p>
   <div>
-  <h2>Sides</h2>
+  <h2>Sides $2.00 ea.</h2>
 <p>
    <label for="dessertPizza">
      <input type="checkbox" name="sides[]" value="Dessert Pizza"  />
-     Dessert Pizza</label>
+     Dessert Pizza </label>
    <br />
    <label for="nachos">
      <input type="checkbox" name="sides[]" value="Nachos"  />
-     Nachos</label>
+     Nachos </label>
    <br />
    <label for="twoLiter">
      <input type="checkbox" name="sides[]" value="Pepsi 2 Liter"  />
-     Pepsi 2 Liter</label>
+     Pepsi 2 Liter </label>
    <br />
    <label for="cokeLiter">
-     <input type="checkbox" name="sides[]" value="Coke 2 Liter onions"  />
-     Coke 2 Liter</label>
+     <input type="checkbox" name="sides[]" value="Coke 2 Liter"  />
+     Coke 2 Liter </label>
    <br />
    <label for="Alfredo">
      <input type="checkbox" name="sides[]" value="Fettucini Alfredo"  />
-     Fettucini Alfredo</label>
+     Fettucini Alfredo </label>
    <br />
   </p>
   </div>
 
+
+
+
 <?php
-
-ob_start();
-
-
 if(!$_POST['submit']){
-    echo "<form method=\"post\" action=\"captcha.php\">\n";
+    echo "<form method=\"post\" action=\"index.php\">\n";
+	
     echo "<table border=\"0\" cellspacing=\"3\" cellpadding=\"3\">\n";
+	
     echo "<tr><td>Please type the character you see below into the box</td></tr>\n";
-    echo "<tr><td align=\"center\"><img src=\"image.php\"></td></tr>\n";
+	
+    echo "<tr><td align=\"center\"><img src=\"pizzaCaptcha.php\"></td></tr>\n";
+	
     echo "<tr><td align=\"right\"><input type=\"text\" name=\"image\"></td></tr>\n";
-    echo "<tr><td align=\"right\"><input type=\"submit\" name=\"submit\" value=\"Check CAPTCHA\"></td></tr>\n";
+    echo "<tr><td align=\"right\"><input type=\"submit\" name=\"submit\" value=\"Submit Your Order\"></td></tr>\n";
     echo "</table></form>\n";
 }else {
-    echo $image = $_POST['image'];
+    echo $image = $_POST['pizzaCaptcha'];
     
     if($image == $_SESSION['string']){
         echo "<b>Successful</b>\n";
@@ -286,9 +289,11 @@ if(!$_POST['submit']){
 }
 
 ob_end_flush();
+
 ?>
- <input name="Place Order" type="submit" />
-  <img src="/pizzaCaptcha.php" />  
+
+
+ 
 </form>
 </div>
 </div>

@@ -19,7 +19,7 @@
 
 .twoColFixLtHdr #container { 
 	width: 780px;  /* using 20px less than a full 800px width allows for browser chrome and avoids a horizontal scroll bar */
-	background:#C33;
+	background:#09F;
 	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
 	border: 1px solid #000000;
 	text-align: left; /* this overrides the text-align: center on the body element. */
@@ -27,10 +27,10 @@
 
 } 
 
-.twoColFixLtHdr #header { 
-	background:#C60; 
+.twoColFixLtHdr #header {
+	background:#F00; 
 	padding: 0 10px 0 20px;
 	text-align:center;
-	width:inherit;
+	width:100%;
 	height:inherit;/* this padding matches the left alignment of the elements in the divs that appear beneath it. If an image is used in the #header instead of text, you may want to remove the padding. */
 } 
