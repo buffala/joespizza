@@ -24,6 +24,13 @@ background-repeat:no-repeat;
 </head>
 
 <?php
+/*
+ * Joe Rozek
+ * 3/29/11
+ *
+ *
+ * Get the user input from the form
+ */
 $email=$_REQUEST['email'];
 $toppings=$_REQUEST['toppings'];
 $name=$_REQUEST['firstName']." ".$_REQUEST['lastName'];
@@ -31,14 +38,12 @@ $address=$_REQUEST['address'];
 $city=$_REQUEST['city'];
 $state=$_REQUEST['State'];
 $zip=$_REQUEST['zip'];
-$size=$_REQUEST['pizzaSize'];
+$pizzaSize=$_REQUEST['pizzaSize'];
 $sides=$_REQUEST['sides'];
 $pizzaPrice=0;
 $toppingCost=0;
 
-/*
- * echo out the user input back to the user
- */
+
 ?>
 <body class="twoColFixLtHdr">
 <div id="header">
@@ -47,6 +52,9 @@ $toppingCost=0;
 
 <div id="mainContent">
 <div id="container">
+
+<!--echo out the user input back to the user  -->
+
 Congratulations <?php echo ($name) ?>! <br />
 We will deliver your order to:<br  />
 <?php echo ($address) ?><br  />
@@ -58,6 +66,9 @@ Your method of payment is <?php echo $_REQUEST['Payment'];?>.<br  />
 
 
 <?php
+/*
+ * determine the cost of the user's pizza
+ */
  if ($size=="small"){
 echo("Your pizza costs: $".$pizzaPrice=8.00."<br />");
 }
@@ -67,7 +78,9 @@ echo("Your pizza costs: $".$pizzaPrice=10.00."<br />");
 echo("Your pizza costs: $".$pizzaPrice=12.00."<br />");
 }else{ echo("Your pizza costs: $".$pizzaPrice=15.00."<br />");
 }
-
+/*
+ * Determine how many toppings the user has and how much their cost is
+ */
   $toppings = $_REQUEST['Toppings'];
   if(empty($toppings)) 
   {
@@ -83,9 +96,14 @@ echo("Your pizza costs: $".$pizzaPrice=12.00."<br />");
       echo($toppings[$i] . " "."<br />");
     }
   }
+  /*
+   * Declare the toppingCost and find out how much the total is
+   */
   $toppingCost=($N*.25);
   
- 
+ /*
+  * echo it out to the user
+  */
   echo("Your cost for toppings is: $".$toppingCost);
   
   
@@ -93,7 +111,9 @@ echo("Your pizza costs: $".$pizzaPrice=12.00."<br />");
 ?>
 <br  />
 <?php
-
+/*
+ * find out what and how many sides are ordered
+ */
   $sides = $_REQUEST['sides'];
   if(empty($sides)) 
   {
@@ -109,14 +129,16 @@ echo("Your pizza costs: $".$pizzaPrice=12.00."<br />");
       echo($sides[$i] . "<br /> ");
     }
   }
-  $sidesCost=($C*2.00);
+ 
   
+  $sidesCost=($C*2.00);
+ 
   $pizzaCost=$toppingCost+$sidesCost+$pizzaPrice;
   
   echo("Your cost for sides is $".$sidesCost."<br />");
   echo("Your total cost is : $".$pizzaCost);
 
-
+//implement swift mailer
   require_once 'swift_required.php';
 
 $smtp = Swift_SmtpTransport::newInstance('smtp.host.tld', 25)

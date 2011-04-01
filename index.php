@@ -21,7 +21,6 @@ background-repeat:no-repeat
 
 }
 
- 
 </style>
 
 <script type="text/javascript">
@@ -42,7 +41,7 @@ if (x==null || x=="")
 	return false;
 }
 var x=document.forms["pizzaForm"]["address"].value
-if (x==null || x=="")
+if (x==null||x=="")
 {
 	alert("You must fill out your address.");
 	return false;
@@ -56,7 +55,7 @@ if (x==null || x=="")
 var x=document.forms["pizzaForm"]["zip"].value
 if (x==null || x=="")
 {
-	alert("You must enter a zip code");
+	alert("You must enter a valid zip code");
 	return false;
 
 }
@@ -89,16 +88,16 @@ if (x==null || x=="")
   
   
   <label for="firstName"><span>First Name:*</span></label>
-  <input name="firstName" type="text" maxlength="12" /><br  />
+  <input name="firstName" type="text" maxlength="12" id="firstName" /><br  />
   
   
   <label for="lastName"><span>Last name:*</span></label>
-  <input type="text" name="lastName" maxlength="15" /><br  />
+  <input type="text" name="lastName" maxlength="15" id="lastName" /><br  />
   <label for="address"><span> Address:*</span></label>
-  <input type="text" name="address" maxlength="30" /><br  />
+  <input type="text" name="address" maxlength="30" id="address"  /><br  />
   
   <label for="city"><span>City:*</span></label>
-  <input type="text" name="city"  maxlength="15"/><br  />
+  <input type="text" name="city"  maxlength="15" id="city"/><br  />
   
   <label for="State"><span>State:*</span></label>
   <select name="State" size="1">
@@ -161,66 +160,71 @@ if (x==null || x=="")
   
   
   <div>
-  <h2>Method of Payment</h2>
+  <fieldset>
+  <legend>Method of Payment</legend>
   <label for="cash">
-<input type="radio" name="Payment" value="Cash"  />
+<input type="radio" name="Payment" value="Cash" id="cash"  />
 Cash</label><br  />
   
   <label for="Check">
-<input type="radio" name="Payment" value="Check"  />
+<input type="radio" name="Payment" value="Check" id="Check"  />
 Check</label><br  />
   
   <label for="creditCard">
-<input type="radio" name="Payment" value="CreditCard"  />
+<input type="radio" name="Payment" value="CreditCard"  id="creditCard" />
 Credit Card</label><br  />
-  
+  </fieldset>
   <div>
-    <h2>Toppings .25 each</h2>
+  <fieldset>
+    <legend>Toppings .25 each</legend>
     <p>
       <label for="pepperoni">
-     <input type="checkbox" name="Toppings[]" value="pepperoni"  />
+     <input type="checkbox" name="Toppings[]" value="pepperoni"  id="pepperoni" />
      Pepperoni</label>
       <br />
       <label for="sausage">
-     <input type="checkbox" name="Toppings[]" value="sausage"  />
+     <input type="checkbox" name="Toppings[]" value="sausage" id="sausage" />
      Sausage</label>
       <br />
       <label for="bacon">
-     <input type="checkbox" name="Toppings[]" value="bacon"  />
+     <input type="checkbox" name="Toppings[]" value="bacon"  id="bacon"/>
      Bacon</label>
       <br />
       <label for="geenOnions">
-     <input type="checkbox" name="Toppings[]" value="green onions"  />
+     <input type="checkbox" name="Toppings[]" value="green onions"  id="greenOnions"/>
      Green Onions</label>
       <br />
       <label for="olives">
-     <input type="checkbox" name="Toppings[]" value="olives"  />
+     <input type="checkbox" name="Toppings[]" value="olives"  id="olives"/>
      Olives</label>
       <br />
       <label for="onions">
-     <input type="checkbox" name="Toppings[]" value="onions" />
+     <input type="checkbox" name="Toppings[]" value="onions" id="onions"/>
      Onions</label>
       <br />
       <label for="tomato">
-     <input type="checkbox" name="Toppings[]" value="tomato"  />
+     <input type="checkbox" name="Toppings[]" value="tomato"  id="tomato"/>
      Tomato</label>
       <br />
       <label for="mushroom">
-     <input type="checkbox" name="Toppings[]" value="mushroom" />
+     <input type="checkbox" name="Toppings[]" value="mushroom" id="mushroom" />
      Mushroom</label>
       <br />
       <label for="pineapple">
-     <input type="checkbox" name="Toppings[]" value="pineapple" />
+     <input type="checkbox" name="Toppings[]" value="pineapple" id="pineapple"/>
      Pineapple</label>
       <br />
       </p>
+      </fieldset>
     </div>
   
   <div>
-  <h2> Size</h2>
-  <p>
-    <label for="small">
-     <input type="radio" name="pizzaSize" value="small" id="pizzaSize_0" />
+  <fieldset>
+  <legend>  Size</legend>
+ 
+     
+      <label for="small">
+     <input type="radio" name="pizzaSize" value="small" id="pizzaSize_0"  />
      Small $8.00</label>
     <br />
     <label for="medium">
@@ -236,30 +240,34 @@ Credit Card</label><br  />
      Jumbo $15.00</label>
     <br />
     </p>
+  </fieldset>
   <div>
-  <h2>Sides $2.00 ea.</h2>
+  <fieldset>
+  <legend>Sides $2.00 ea.</legend>
 <p>
    <label for="dessertPizza">
-     <input type="checkbox" name="sides[]" value="Dessert Pizza"  />
+     <input type="checkbox" name="sides[]" value="Dessert Pizza" id="dessertPizza" />
      Dessert Pizza </label>
    <br />
    <label for="nachos">
-     <input type="checkbox" name="sides[]" value="Nachos"  />
+     <input type="checkbox" name="sides[]" value="Nachos"  id="nachos"/>
      Nachos </label>
    <br />
    <label for="twoLiter">
-     <input type="checkbox" name="sides[]" value="Pepsi 2 Liter"  />
+     <input type="checkbox" name="sides[]" value="Pepsi 2 Liter" id="twoLiter"  />
      Pepsi 2 Liter </label>
    <br />
    <label for="cokeLiter">
-     <input type="checkbox" name="sides[]" value="Coke 2 Liter"  />
+     <input type="checkbox" name="sides[]" value="Coke 2 Liter"  id="cokeLiter"/>
      Coke 2 Liter </label>
    <br />
    <label for="Alfredo">
-     <input type="checkbox" name="sides[]" value="Fettucini Alfredo"  />
+     <input type="checkbox" name="sides[]" value="Fettucini Alfredo"  id="alfredo"/>
      Fettucini Alfredo </label>
    <br />
+  
   </p>
+  </fieldset>
   </div>
 
 

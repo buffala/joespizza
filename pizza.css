@@ -34,3 +34,8 @@
 	width:100%;
 	height:inherit;/* this padding matches the left alignment of the elements in the divs that appear beneath it. If an image is used in the #header instead of text, you may want to remove the padding. */
 } 
+legend{font-weight:bold;
+font-size:x-large;
+}
+label{display:block;
+}
