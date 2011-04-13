@@ -1,16 +1,8 @@
-<!DOCTYPE html PUBLIC -//W3C//DTD XHTML 1.0 Transitional//EN http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd>
-<html xmlns=http://www.w3.org/1999/xhtml>
-<head>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Pizza Planet</title>
-<link href="css/pizza.css" rel="stylesheet" type="text/css">
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="scripts/script.js"></script>
+</script>
+
+
 </head>
-<?php require('function.php'); ?>
+
 <body class="twoColFixLtHdr">
 <div id="header" ><img src="pizzaPlanetLogo.jpg" width="653" height="364" /></div>
 <div id="mainContent">
@@ -18,12 +10,10 @@
 <div id="container">
 <br />
 <br />
-<form action="pizzaResults.php" name="pizzaForm" method="post" onSubmit="return validateForm()">
+<form action="pizzaResults.php" name="pizzaForm" method="post" onsubmit="return validateForm()">
 <label for="firstName"><span>First Name:*</span></label>
-  <input name="firstName" type="text" maxlength="12" id="firstName" /><?php emptyCheck($_REQUEST['firstName']); ?><br  />
-  
-  
-  <label for="lastName"><span>Last name:*</span></label>
+<input name="firstName" type="text" maxlength="12" id="firstName" /><br />
+<label for="lastName"><span>Last name:*</span></label>
 <input type="text" name="lastName" maxlength="15" id="lastName" /><br />
 <label for="address"><span> Address:*</span></label>
 <input type="text" name="address" maxlength="30" id="address" /><br />

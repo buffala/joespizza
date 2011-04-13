@@ -35,9 +35,10 @@ function setPost(){
 // check for an empty field
 function emptyCheck($n){
 	if(isset($_POST['send'])){
-		if (empty($n) || ($n == 'First Name') || ($n == 'Last Name') || ($n == 'Phone') || ($n == 'Address')
+		if (empty($n) || ($n == null) || ($n == 'Last Name') || ($n == 'Phone') || ($n == 'Address')
 			|| ($n == 'City') || ($n == 'State') || ($n == 'Zip')){
 			echo "Please Enter your $n <br />";
+			break;
 		}// end of if(empty)
 	}// end of if send
 }// endo of funtion

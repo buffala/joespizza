@@ -139,22 +139,25 @@ echo("Your pizza costs: $".$pizzaPrice=12.00."<br />");
   echo("Your total cost is : $".$pizzaCost);
 
 //implement swift mailer
-  require_once 'swift_required.php';
+@(include_once('swift_required.php'));
 
-$smtp = Swift_SmtpTransport::newInstance('smtp.host.tld', 25)
-  ->setUsername('joero1285@gmail.com ')
-  ->setPassword('makemoney1');
+$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
+  	->setUsername('simongitswift')
+  	->setPassword('swift8080');
 
-$mailer = Swift_Mailer::newInstance($smtp);
+$mailer = Swift_Mailer::newInstance($transport);
 
 $message = Swift_Message::newInstance('Your Pizza Order');
 $message
   ->setTo($email)
   ->setFrom(array('joero1285@gmail.com' => 'Joe Rozek'))
- 
   ->setBody('Congratulations on your purchase your order should be their within the next 45 minutes.<br />
-			You ordered a $size pizza with $toppings and a $sides.'
-  );
+			You ordered a $size pizza with $toppings and a $sides.');
+ 
+$headers = $message->getHeaders();
+$headers->addTextHeader('amn293', 'CNM-270');
+
+echo ('under here');
   
 if ($mailer->send($message))
 {

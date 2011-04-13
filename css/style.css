@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+body{background-color:#06C;
+}
+table{text-align:center;}
+ 
+label span{float:left;
+	width:5em;}
+ 
+
+body{background-image:url(../imgs/pizza.jpg);
+background-attachment:fixed;
+width:inherit;
+height:auto;
+background-repeat:no-repeat
+
+}
