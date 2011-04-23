@@ -139,35 +139,47 @@ echo("Your pizza costs: $".$pizzaPrice=12.00."<br />");
   echo("Your total cost is : $".$pizzaCost);
 
 //implement swift mailer
-@(include_once('swift_required.php'));
+
+if( PATH_SEPARATOR  == ';' )
+    define('SLASH','\\');
+  else
+    define('SLASH','/'); 
+
+  define('APP_PATH', realpath(dirname(__FILE__)));
+     
+  set_include_path('.'.PATH_SEPARATOR.implode(PATH_SEPARATOR, array(
+    realpath(APP_PATH . SLASH)
+  )));
+
+require_once 'lib' . SLASH . 'swift_required.php';
 
 $transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
-  	->setUsername('simongitswift')
-  	->setPassword('swift8080');
+  	->setUsername('joespizzakzoo')
+  	->setPassword('Joe1234567890');
 
 $mailer = Swift_Mailer::newInstance($transport);
 
-$message = Swift_Message::newInstance('Your Pizza Order');
+$message = Swift_Message::newInstance('Your Pizza Order - ' . $pizzaCost);
 $message
   ->setTo($email)
-  ->setFrom(array('joero1285@gmail.com' => 'Joe Rozek'))
+  ->setFrom(array('joespizzakzoo@gmail.com' => 'Joes Pizza'))
+  ->setContentType('text/html')
+  // Fix the array.
   ->setBody('Congratulations on your purchase your order should be their within the next 45 minutes.<br />
-			You ordered a $size pizza with $toppings and a $sides.');
+			You ordered a ' . $pizzaSize .  ' pizza with ' . $toppings . ' and a ' . $sides . '.');
  
 $headers = $message->getHeaders();
-$headers->addTextHeader('amn293', 'CNM-270');
+$headers->addTextHeader('Your Pizza Order', $pizzaCost);
 
 echo ('under here');
-  
-if ($mailer->send($message))
-{
-  echo "Message sent!";
-}
-else
-{
-  echo "Message could not be sent.";
-}
 
+//Send the message
+try {
+  $result = $mailer->send($message);
+}
+catch (Exception $e){
+	echo 'Caught Exception: ', $e->getMessage(), "\n";
+}
 ?>
 
   </div>

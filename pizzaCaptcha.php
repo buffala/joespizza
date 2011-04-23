@@ -8,7 +8,8 @@ $red = imagecolorallocate($img, 255,0, 0);
 $pink = imagecolorallocate($img, 200, 0,150);
 
 function randomString($length){
-	$chars="abcdefghijklmnopqrstuvwxyz023456789";
+	// Changed Characters to avoid confusion (Tom)
+	$chars="abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789";
 	srand((double)microtime()*1000000);
 	$str="";
 	$i=0;
