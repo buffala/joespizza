@@ -165,13 +165,10 @@ $message
   ->setFrom(array('joespizzakzoo@gmail.com' => 'Joes Pizza'))
   ->setContentType('text/html')
   // Fix the array.
-  ->setBody('Congratulations on your purchase your order should be their within the next 45 minutes.<br />
-			You ordered a ' . $pizzaSize .  ' pizza with ' . $toppings . ' and a ' . $sides . '.');
+  ->setBody('Congratulations on your purchase your order should be ready within the next 45 minutes.');
  
 $headers = $message->getHeaders();
 $headers->addTextHeader('Your Pizza Order', $pizzaCost);
-
-echo ('under here');
 
 //Send the message
 try {
