@@ -68,3 +68,46 @@ function listOrder(){
 		}// end of foreach	
 	}// end of clear
 }// end of listOrder()
+
+function mailIt($cost, $email){
+	//implement swift mailer
+
+  if( PATH_SEPARATOR  == ';' )
+    define('SLASH','\\');
+  else
+    define('SLASH','/'); 
+
+  define('APP_PATH', realpath(dirname(__FILE__)));
+     
+  set_include_path('.'.PATH_SEPARATOR.implode(PATH_SEPARATOR, array(
+    realpath(APP_PATH . SLASH)
+  )));
+
+  require_once 'lib' . SLASH . 'swift_required.php';
+
+	$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
+  	->setUsername('joespizzakzoo')
+  	->setPassword('Joe1234567890');
+
+  $mailer = Swift_Mailer::newInstance($transport);
+
+  $message = Swift_Message::newInstance('Your Pizza Order - $' . $pizzaCost);
+  $message
+    ->setTo($email)
+    ->setFrom(array('joespizzakzoo@gmail.com' => 'Joes Pizza'))
+    ->setContentType('text/html')
+    // Fix the array.
+    ->setBody('Thank you for your purchase, your order should be ready within the next 45 minutes.');
+ 
+  $headers = $message->getHeaders();
+  $headers->addTextHeader('Your Pizza Order - $', $pizzaCost);
+
+//Send the message
+  try {
+    $result = $mailer->send($message);
+  }
+  catch (Exception $e){
+	  echo 'Caught Exception: ', $e->getMessage(), "\n";
+  }
+
+}
