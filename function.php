@@ -69,6 +69,8 @@ function listOrder(){
 	}// end of clear
 }// end of listOrder()
 
+// Mailer Function
+
 function mailIt($cost, $email){
 	//implement swift mailer
 
