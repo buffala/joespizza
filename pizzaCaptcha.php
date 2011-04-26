@@ -1,34 +1,68 @@
-<?php
-session_start();
-$img = imagecreatetruecolor(80,30);
-
-$white = imagecolorallocate($img, 255, 255, 255);
-$black = imagecolorallocate($img,0,0,0);
-$red = imagecolorallocate($img, 255,0, 0);
-$pink = imagecolorallocate($img, 200, 0,150);
-
-function randomString($length){
-	// Changed Characters to avoid confusion (Tom)
-	$chars="abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789";
-	srand((double)microtime()*1000000);
-	$str="";
-	$i=0;
-		while($i<=$length){
-		$num=rand()%33;
-		$tmp=substr($chars, $num, 1);
-		$str=($str.$tmp);
-		$i++;
-	}
-	return $str;
-	}
+<?php 
+session_start(); 
+header("Expires: Tues, 26 Apr 2010 03:00:00 GMT");  
+header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");  
+header("Cache-Control: no-store, no-cache, must-revalidate");  
+header("Cache-Control: post-check=0, pre-check=0", false); 
+header("Pragma: no-cache");  
 
 
-imagefill($img, 0, 0, $black);
 
-$string=randomString(rand(4,7));
-$_SESSION['string']=$string;
+function _generateRandom($length=8) 
+{ 
+    $_rand_src = array( 
+        array(41,63) //digits 
+        , array(96,119) //lowercase chars 
+//        , array(62,89) //uppercase chars 
+    ); 
+    srand ((double) microtime() * 1000000); 
+    $random_string = ""; 
+    for($i=0;$i<$length;$i++){ 
+        $i1=rand(0,sizeof($_rand_src)-1); 
+        $random_string .= chr(rand($_rand_src[$i1][0],$_rand_src[$i1][1])); 
+    } 
+    return $random_string; 
+} 
 
-imagettftext($img, 12,0,15,15,$white, "arial.ttf", $string);
-header("Content-type: image/png");
-imagepng($img);
-imagedestroy($img);
+function _generateRandom($length=8) 
+{ 
+    $_rand_src = array( 
+        array(41,63) //digits 
+        , array(96,119) //lowercase chars 
+//        , array(62,89) //uppercase chars 
+    ); 
+    srand ((double) microtime() * 1000000); 
+    $random_string = ""; 
+    for($i=0;$i<$length;$i++){ 
+        $i1=rand(0,sizeof($_rand_src)-1); 
+        $random_string .= chr(rand($_rand_src[$i1][0],$_rand_src[$i1][1])); 
+    } 
+    return $random_string; 
+} 
+function _generateRandom($length=8) 
+{ 
+    $_rand_src = array( 
+        array(41,63) //digits 
+        , array(96,119) //lowercase chars 
+//        , array(62,89) //uppercase chars 
+    ); 
+    srand ((double) microtime() * 1000000); 
+    $random_string = ""; 
+    for($i=0;$i<$length;$i++){ 
+        $i1=rand(0,sizeof($_rand_src)-1); 
+        $random_string .= chr(rand($_rand_src[$i1][0],$_rand_src[$i1][1])); 
+    } 
+    return $random_string; 
+} 
+
+$img = @imagecreatefromjpeg("captcha.jpg");
+$rand=_generateRandom(3);
+$_SESSION['captcha'] = $rand; 
+ImageString($img, 5, 2, 2, $rand[0]." ".$rand[1]." ".$rand[2]." ", ImageColorAllocate ($im, 0, 0, 0)); 
+$rand = _generateRandom(3); 
+ImageString($img, 5, 2, 2, " ".$rand[0]." ".$rand[1]." ".$rand[2], ImageColorAllocate ($im, 255, 0, 0)); 
+Header ('Content-type: image/jpeg'); 
+imagejpeg($img,Null,100); 
+ImageDestroy($img); 
+?> 
+
