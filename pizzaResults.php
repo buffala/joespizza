@@ -1,6 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<?php session_start()?>
+<?php
+if($_SESSION["captcha"]==$_POST["captcha"])
+{
+   //CAPTCHA is valid; proceed the message: save to database, send by e-mail...
+}
+?>
+/*Anita Yummit
+*implement CAPTCHA*/
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Pizza Planet</title>
 <link rel="stylesheet" type="text/css" href="pizza.css" />
@@ -139,6 +148,31 @@ echo("Your pizza costs: $".$pizzaPrice=12.00."<br />");
   echo("Your cost for sides is $".$sidesCost."<br />");
   echo("Your total cost is : $".$pizzaCost);
 
+<?php session_start()?>
+<form method="post" action="">
+<table bgcolor="#CCCCCC">
+<tr><th>Contact us (Post new message):</th></tr>
+<tr><td><textarea cols="30" rows="5" name="message"></textarea></td></tr>
+<tr><td align="center">CAPTCHA:<br>
+(antispam code, 3 black symbols)<br>
+<table><tr><td><img src="captcha.php" alt="captcha image"></td>
+<td><input type="text" name="captcha" size="3" maxlength="3"></td></tr></table>
+</td></tr>
+<tr><th align="center"><input type="submit" value="Submit"></th></tr>    
+</table>
+</form>
+<?php
+if(isset($_POST["captcha"]))
+if($_SESSION["captcha"]==$_POST["captcha"])
+{
+ //CAPTCHA is valid; proceed the message: save to database, send by e-mail...
+ echo 'CAPTCHA is valid; proceed the message';
+}
+else
+{
+echo 'CAPTCHA is not valid; ignore submission';
+}
+?>
 
   mailIt($pizzaCost,$email);
 
