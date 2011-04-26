@@ -1,11 +1,16 @@
-<!DOCTYPE html PUBLIC -//W3C//DTD XHTML 1.0 Transitional//EN http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd>
-<html xmlns=http://www.w3.org/1999/xhtml>
-<head>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Pizza Planet</title>
+/*inserted captcha session - Anita Yummit
+<?php session_start() ?> 
+<?php 
+if($_SESSION["captcha"]==$_POST["captcha"])
+{
+    //CAPTHCA is valid; proceed the message: save to database, send by e-mail ...
+}
+?>
 <link href="css/pizza.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="scripts/script.js"></script>
@@ -194,33 +199,31 @@ Fettucini Alfredo </label>
 
 
 
-<?php
-if(!$_POST['submit']){
-    echo "<form method=\"post\" action=\"index.php\">\n";
-
-    echo "<table border=\"0\" cellspacing=\"3\" cellpadding=\"3\">\n";
-
-    echo "<tr><td>Please type the character you see below into the box</td></tr>\n";
-
-    echo "<tr><td align=\"center\"><img src=\"pizzaCaptcha.php\"></td></tr>\n";
-
-    echo "<tr><td align=\"right\"><input type=\"text\" name=\"image\"></td></tr>\n";
-    echo "<tr><td align=\"right\"><input type=\"submit\" name=\"submit\" value=\"Submit Your Order\"></td></tr>\n";
-    echo "</table></form>\n";
-}else {
-    echo $image = $_POST['pizzaCaptcha'];
-    
-    if($image == $_SESSION['string']){
-        echo "<b>Successful</b>\n";
-    }else {
-        echo "<em>Failed</em>\n";
-    }
+?php session_start()?>
+<form method="post" action="">
+<table bgcolor="#CCCCCC">
+<tr><th>Contact us (Post new message):</th></tr>
+<tr><td><textarea cols="30" rows="5" name="message"></textarea></td></tr>
+<tr><td align="center">CAPTCHA:<br>
+    (antispam code, 3 black symbols)<br>
+    <table><tr><td><img src="captcha.php" alt="captcha image"></td>
+    <td><input type="text" name="captcha" size="3" maxlength="3"></td></tr></table>
+</td></tr>
+<tr><th align="center"><input type="submit" value="Submit"></th></tr>    
+</table>
+</form>
+<?php 
+if(isset($_POST["captcha"]))
+if($_SESSION["captcha"]==$_POST["captcha"])
+{
+    //CAPTHCA is valid; proceed the message: save to database, send by e-mail ...
+    echo 'CAPTCHA is valid; proceed the message';
 }
-
-ob_end_flush();
-
+else
+{
+    echo 'CAPTCHA is not valid; ignore submission';
+}
 ?>
-
 
 </form>
 </div>
