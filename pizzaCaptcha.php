@@ -24,36 +24,7 @@ function _generateRandom($length=8)
     return $random_string; 
 } 
 
-function _generateRandom($length=8) 
-{ 
-    $_rand_src = array( 
-        array(41,63) //digits 
-        , array(96,119) //lowercase chars 
-//        , array(62,89) //uppercase chars 
-    ); 
-    srand ((double) microtime() * 1000000); 
-    $random_string = ""; 
-    for($i=0;$i<$length;$i++){ 
-        $i1=rand(0,sizeof($_rand_src)-1); 
-        $random_string .= chr(rand($_rand_src[$i1][0],$_rand_src[$i1][1])); 
-    } 
-    return $random_string; 
-} 
-function _generateRandom($length=8) 
-{ 
-    $_rand_src = array( 
-        array(41,63) //digits 
-        , array(96,119) //lowercase chars 
-//        , array(62,89) //uppercase chars 
-    ); 
-    srand ((double) microtime() * 1000000); 
-    $random_string = ""; 
-    for($i=0;$i<$length;$i++){ 
-        $i1=rand(0,sizeof($_rand_src)-1); 
-        $random_string .= chr(rand($_rand_src[$i1][0],$_rand_src[$i1][1])); 
-    } 
-    return $random_string; 
-} 
+
 
 $img = @imagecreatefromjpeg("captcha.jpg");
 $rand=_generateRandom(3);
